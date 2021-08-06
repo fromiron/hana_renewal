@@ -3,6 +3,19 @@ import publicApi from "../api/publicApi";
 import {GetStaticPropsContext} from "next";
 import BlogMainSection from "../../components/blog/BlogMainSection";
 
+interface propsType {
+    posts: {
+        id: number;
+        title: string;
+        text: string;
+        media: {
+            id: number;
+            url: string;
+        }
+    }
+}
+
+
 function Blog({posts}: propsType) {
     console.log(posts)
     console.log()
@@ -15,19 +28,6 @@ function Blog({posts}: propsType) {
 }
 
 export default Blog;
-
-
-interface propsType {
-    posts: {
-        id: number;
-        title: string;
-        text: string;
-        media: {
-            id: number;
-            url: string;
-        }
-    }
-}
 
 
 function BlogPagination() {

@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import MarkdownRenderer from "../../utils/markdownRenderer";
 
 interface postType {
     id: number;
@@ -9,7 +8,8 @@ interface postType {
         id: number;
         url: string;
     }
-    text: string;
+    excerpt: string;
+    created_at:string;
 }
 
 function BlogMainSection({posts}: any) {
@@ -17,10 +17,10 @@ function BlogMainSection({posts}: any) {
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-24 mx-auto">
                 <BlogSectionHeader text={"blaasdadasdasdjkqewhrfiqwj!"} title={"posts!"}/>
-                <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+                <ul className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
                     {posts.map((post: postType) => <Post key={post.id} id={post.id} title={post.title}
-                                                         text={post.text} media={post.media}/>)}
-                </div>
+                                                         excerpt={post.excerpt} media={post.media} created_at={post.created_at}/>)}
+                </ul>
             </div>
         </section>
     )
@@ -48,25 +48,27 @@ function BlogSectionHeader({title, text}: blogSectionHeader) {
 }
 
 
-function Post({id, title, media, text}: postType) {
-    console.log(media)
+function Post({id, title, media, excerpt, created_at}: postType) {
+    const formattedDate = new Date(created_at).toLocaleDateString('ja-JP')
     return (
-        <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
-            <div className="rounded-lg overflow-hidden h-48 relative">
-                <Image alt="media" src={process.env.NEXT_PUBLIC_API_URL + media.url} layout={'fill'}
-                       objectFit={'cover'}/>
-            </div>
-            <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{title}</h2>
-            <p className="text-base leading-relaxed mt-2">
-                <MarkdownRenderer content={text}/>
-            </p>
-            <a href={`/blog/${id}`} className="text-indigo-500 inline-flex items-center mt-3">Learn More
-                <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                     strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </a>
-        </div>
+            <li className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                <div className="rounded-lg overflow-hidden h-48 relative">
+                    <Image alt="media" src={process.env.NEXT_PUBLIC_API_URL + media.url} layout={'fill'}
+                           objectFit={'cover'}/>
+                </div>
+                <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{title}</h2>
+                <div>{formattedDate}</div>
+
+                <p className="text-base leading-relaxed mt-2">
+                    {excerpt}
+                </p>
+                <a href={`/blog/${id}`} className="text-indigo-500 inline-flex items-center mt-3">Learn More
+                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
+                         strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </li>
     )
 }
 

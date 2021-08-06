@@ -1,5 +1,20 @@
 import React from "react";
 import publicApi from "../api/publicApi";
+import MarkdownRenderer from "../../utils/markdownRenderer";
+import {GetStaticPropsContext} from "next";
+
+interface propsType {
+    posts: {
+        id: number;
+        title: string;
+        text: string;
+        media: {
+            id: number;
+            url: string;
+        }
+    }
+}
+
 
 function PostDetail() {
     return (
@@ -39,17 +54,17 @@ function PostDetail() {
 }
 
 export default PostDetail;
-
-
-export async function getStaticProps(context: any) {
-    const {params} = context;
-    console.log(params)
-    const {id} = params;
-    const postData = await publicApi(`/posts/${id}`);
-    return {
-        props: {
-            post: postData
-        },
-        revalidate: 600
-    }
-}
+//
+//
+// export async function getStaticProps(context: GetStaticPropsContext) {
+//     const {params} = context;
+//     console.log(params)
+//     const {id} = params;
+//     const postData = await publicApi(`/posts/${id}`);
+//     return {
+//         props: {
+//             post: postData
+//         },
+//         revalidate: 600
+//     }
+// }
