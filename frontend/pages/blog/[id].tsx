@@ -3,6 +3,7 @@ import publicApi from "../api/publicApi";
 import MarkdownRenderer from "../../utils/markdownRenderer";
 import {GetStaticPropsContext} from "next";
 import datetimeFormatter from "../../utils/datetimeFormatter";
+import Link from 'next/link';
 
 interface propsType {
     post: {
@@ -13,20 +14,29 @@ interface propsType {
             id: number;
             url: string;
         }
-        created_at:string;
+        created_at: string;
     }
 }
-
 
 
 function PostDetail({post}: propsType) {
     const {title, text, created_at} = post;
     return (
-        <article className="markdown prose lg:prose-xl px-4 py-24 mx-auto max-w-7xl post-detail">
-            <MarkdownRenderer content={`# ${title}`}/>
-            <span>{datetimeFormatter(created_at)}</span>
-            <MarkdownRenderer content={text}/>
-            <a href="/blog">back</a>
+        <article className="prose lg:prose-xl px-4 py-4 mx-auto max-w-7xl post-detail">
+            <div className="w-full mx-auto text-center "><h1>{title}</h1>
+                <p className="text-gray-700">
+                    Written by
+                    <span className="text-primary">&nbsp; Rabbit Sitter HANA&nbsp; </span>
+                    on <time itemProp="datePublished dateModified"
+                             dateTime={created_at}>{datetimeFormatter(created_at)}</time>
+                </p>
+            </div>
+            <div className="mx-auto flex justify-center">
+                <div className="max-w-lg">
+                    <MarkdownRenderer content={text}/>
+                    <Link href="/blog">back</Link>
+                </div>
+            </div>
         </article>
     )
 }
