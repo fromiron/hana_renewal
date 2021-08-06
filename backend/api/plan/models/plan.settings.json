@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "plans",
+  "info": {
+    "name": "plan",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "price": {
+      "type": "integer",
+      "required": true
+    },
+    "time": {
+      "type": "integer",
+      "required": true
+    },
+    "services": {
+      "collection": "service",
+      "via": "plans",
+      "dominant": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "event": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}
