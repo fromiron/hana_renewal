@@ -17,8 +17,6 @@ interface propsType {
 
 
 function Blog({posts}: propsType) {
-    console.log(posts)
-    console.log()
     return (
         <Fragment>
             <BlogMainSection posts={posts}/>
@@ -59,3 +57,4 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     const postData = await publicApi('/posts');
     return {props: {posts: postData}}
 }
+

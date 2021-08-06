@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import datetimeFormatter from "../../utils/datetimeFormatter";
 
 interface postType {
     id: number;
@@ -49,7 +50,6 @@ function BlogSectionHeader({title, text}: blogSectionHeader) {
 
 
 function Post({id, title, media, excerpt, created_at}: postType) {
-    const formattedDate = new Date(created_at).toLocaleDateString('ja-JP')
     return (
             <li className="p-4 md:w-1/3 sm:mb-0 mb-6">
                 <div className="rounded-lg overflow-hidden h-48 relative">
@@ -57,7 +57,7 @@ function Post({id, title, media, excerpt, created_at}: postType) {
                            objectFit={'cover'}/>
                 </div>
                 <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{title}</h2>
-                <div>{formattedDate}</div>
+                <div>{datetimeFormatter(created_at)}</div>
 
                 <p className="text-base leading-relaxed mt-2">
                     {excerpt}

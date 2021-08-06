@@ -26,7 +26,10 @@ module.exports = {
             zIndex: ["hover", "active"],
         },
     },
-    plugins: [require("kutty")],
+    plugins: [
+        require("kutty"),
+        require('@tailwindcss/typography'),
+    ],
     future: {
         purgeLayersByDefault: true,
     },
