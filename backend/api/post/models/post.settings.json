@@ -35,6 +35,10 @@
     "excerpt": {
       "type": "text",
       "required": true
+    },
+    "tags": {
+      "collection": "tag",
+      "via": "post"
     }
   }
 }

@@ -5,6 +5,7 @@ import {GetStaticPropsContext} from "next";
 import datetimeFormatter from "../../utils/datetimeFormatter";
 import Link from 'next/link';
 
+
 interface propsType {
     post: {
         id: number;
@@ -14,22 +15,25 @@ interface propsType {
             id: number;
             url: string;
         }
+        tags: [{ id: number; name: string }];
         created_at: string;
     }
 }
 
 
 function PostDetail({post}: propsType) {
-    const {title, text, created_at} = post;
+    const {title, text, tags, created_at} = post;
+    console.log(tags);
     return (
         <article className="prose lg:prose-xl px-4 py-4 mx-auto max-w-7xl post-detail">
-            <div className="w-full mx-auto text-center "><h1>{title}</h1>
-                <p className="text-gray-700">
+            <div className="w-full mx-auto text-center "><h2>{title}</h2>
+                <p className="text-gray-700 text-xs">
                     Written by
                     <span className="text-primary">&nbsp; Rabbit Sitter HANA&nbsp; </span>
                     on <time itemProp="datePublished dateModified"
                              dateTime={created_at}>{datetimeFormatter(created_at)}</time>
                 </p>
+                {tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
             </div>
             <div className="mx-auto flex justify-center">
                 <div className="max-w-lg">

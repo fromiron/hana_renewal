@@ -3,11 +3,13 @@ import publicApi from "../api/publicApi";
 import {GetStaticPropsContext} from "next";
 import BlogMainSection from "../../components/blog/BlogMainSection";
 
-interface propsType {
+
+interface PropsType {
     posts: {
         id: number;
         title: string;
         text: string;
+        tags: [{ id: number; name: string }];
         media: {
             id: number;
             url: string;
@@ -16,7 +18,7 @@ interface propsType {
 }
 
 
-function Blog({posts}: propsType) {
+function Blog({posts}: PropsType) {
     return (
         <Fragment>
             <BlogMainSection posts={posts}/>
