@@ -4,26 +4,11 @@ import MarkdownRenderer from "../../utils/markdownRenderer";
 import {GetStaticPropsContext} from "next";
 import datetimeFormatter from "../../utils/datetimeFormatter";
 import Link from 'next/link';
+import {IPost} from "../../components/blog/blogInterface";
 
 
-interface propsType {
-    post: {
-        id: number;
-        title: string;
-        text: string;
-        media: {
-            id: number;
-            url: string;
-        }
-        tags: [{ id: number; name: string }];
-        created_at: string;
-    }
-}
-
-
-function PostDetail({post}: propsType) {
+function PostDetail(post: IPost) {
     const {title, text, tags, created_at} = post;
-    console.log(tags);
     return (
         <article className="prose lg:prose-xl px-4 py-4 mx-auto max-w-7xl post-detail">
             <div className="w-full mx-auto text-center "><h2>{title}</h2>
@@ -33,11 +18,11 @@ function PostDetail({post}: propsType) {
                     on <time itemProp="datePublished dateModified"
                              dateTime={created_at}>{datetimeFormatter(created_at)}</time>
                 </p>
-                {tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
+                {tags?.map(tag => <span key={tag.id}>{tag.name}</span>)}
             </div>
             <div className="mx-auto flex justify-center">
                 <div className="max-w-lg">
-                    <MarkdownRenderer content={text}/>
+                    {text && <MarkdownRenderer content={text}/>}
                     <Link href="/blog">back</Link>
                 </div>
             </div>
@@ -52,9 +37,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     const {id}: any = params;
     const postData = await publicApi(`/posts/${id}`);
     return {
-        props: {
-            post: postData
-        },
+        props: postData,
         revalidate: 600
     }
 }

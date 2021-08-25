@@ -1,40 +1,25 @@
 import React from "react";
 import Image from "next/image";
 import datetimeFormatter from "../../utils/datetimeFormatter";
+import {IBlogSectionHeader, IPostArray, IPost} from "./blogInterface";
 
-interface postType {
-    id: number;
-    title: string;
-    media: {
-        id: number;
-        url: string;
-    }
-    excerpt: string;
-    created_at:string;
-}
-
-function BlogMainSection({posts}: any) {
+function BlogMainSection({posts}: IPostArray) {
     return (
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-12 mx-auto">
-                <BlogSectionHeader title={"Hanalog"} text={"うさぎ情報を共有いたします。"} />
+                <BlogSectionHeader title={"Hanalog"} text={"うさぎ情報を共有いたします。"}/>
                 <ul className="flex flex-wrap -mx-4 -mb-10 -mt-7">
-                    {posts.map((post: postType) => <Post key={post.id} id={post.id} title={post.title}
-                                                         excerpt={post.excerpt} media={post.media} created_at={post.created_at}/>)}
+                    {posts.map((post: IPost) => <Post key={post.id} id={post.id} title={post.title}
+                                                      excerpt={post.excerpt} media={post.media}
+                                                      created_at={post.created_at}/>)}
                 </ul>
             </div>
         </section>
     )
 }
 
-interface blogSectionHeader {
-    title: string;
-    text: string;
-}
 
-``
-
-function BlogSectionHeader({title, text}: blogSectionHeader) {
+function BlogSectionHeader({title, text}: IBlogSectionHeader) {
     return (
         <div className="flex flex-col">
             <div className="h-1 bg-gray-200 rounded overflow-hidden">
@@ -49,26 +34,28 @@ function BlogSectionHeader({title, text}: blogSectionHeader) {
 }
 
 
-function Post({id, title, media, excerpt, created_at}: postType) {
+function Post({id, title, media, excerpt, created_at}: IPost) {
     return (
-            <li className="p-4 md:w-1/3 sm:mb-0 mb-6">
-                <div className="rounded-lg overflow-hidden h-48 relative">
-                    <Image alt="media" src={process.env.NEXT_PUBLIC_API_URL + media.url} layout={'fill'}
-                           objectFit={'cover'}/>
-                </div>
-                <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{title}</h2>
-                <div>{datetimeFormatter(created_at)}</div>
+        <li className="p-4 md:w-1/3 sm:mb-0 mb-6">
+            <div className="rounded-lg overflow-hidden h-48 relative">
+                {media &&
+                <Image alt="media" src={process.env.NEXT_PUBLIC_API_URL + media?.url} layout={'fill'}
+                       objectFit={'cover'}/>
+                }
+            </div>
+            <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{title}</h2>
+            <div>{datetimeFormatter(created_at)}</div>
 
-                <p className="text-base leading-relaxed mt-2 break-all">
-                    {excerpt}
-                </p>
-                <a href={`/blog/${id}`} className="text-indigo-500 inline-flex items-center mt-3">Learn More
-                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
-                         strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
-            </li>
+            <p className="text-base leading-relaxed mt-2 break-all">
+                {excerpt}
+            </p>
+            <a href={`/blog/${id}`} className="text-indigo-500 inline-flex items-center mt-3">Learn More
+                <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
+                     strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </li>
     )
 }
 
