@@ -5,7 +5,7 @@ import {GetStaticPropsContext} from "next";
 import datetimeFormatter from "../../utils/datetimeFormatter";
 import Link from 'next/link';
 import {IPost} from "../../components/blog/blogInterface";
-
+import TagIcon from "../../components/blog/TagIcon";
 
 function PostDetail(post: IPost) {
     const {title, text, tags, created_at} = post;
@@ -18,7 +18,7 @@ function PostDetail(post: IPost) {
                     on <time itemProp="datePublished dateModified"
                              dateTime={created_at}>{datetimeFormatter(created_at)}</time>
                 </p>
-                {tags?.map(tag => <span key={tag.id}>{tag.name}</span>)}
+                {tags?.map(tag => <TagIcon key={tag.id.toString()} name={tag.name}/>)}
             </div>
             <div className="mx-auto flex justify-center">
                 <div className="max-w-lg">
@@ -32,6 +32,7 @@ function PostDetail(post: IPost) {
 
 export default PostDetail;
 
+
 export async function getStaticProps(context: GetStaticPropsContext) {
     const {params} = context;
     const {id}: any = params;
@@ -41,7 +42,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
         revalidate: 600
     }
 }
-
 
 export async function getStaticPaths(context: GetStaticPropsContext) {
     const posts = await publicApi('/posts');

@@ -20,7 +20,7 @@ function ServicesSection({services}: any) {
                 <div
                     className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-20">
 
-                    {list.map((service: servicesTypes) => <ServiceItem key={'service'+service.id} id={service.id}
+                    {list.map((service: servicesTypes) => <ServiceItem key={'service' + service.id} id={service.id}
                                                                        icon={SvgIcon(service.icon.url)}
                                                                        title={service.title}
                                                                        description={service.description}/>)}
@@ -30,14 +30,11 @@ function ServicesSection({services}: any) {
     )
 }
 
-interface Props {
-    imageProps: ImageProps;
-}
 
 function SvgIcon(url: string) {
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
     return (
-        <Image  src={`${API_URL}${url}`} alt={'icon'} height={40} width={40}/>
+        <Image src={`${API_URL}${url}`} alt={'icon'} height={40} width={40}/>
     )
 }
 

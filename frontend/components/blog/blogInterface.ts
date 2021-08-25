@@ -20,4 +20,6 @@ export interface IPostArray {
     [key: string]: IPost[]
 }
 
-
+export interface ICount {
+    count: number;
+}
