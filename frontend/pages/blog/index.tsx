@@ -18,7 +18,7 @@ export default Blog;
 
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-    const postData = await publicApi('/posts?_sort=id:DESC');
+    const postData = await publicApi('/posts?_sort=id:DESC&_limit=9');
 
     return {props: {posts: postData}}
 }

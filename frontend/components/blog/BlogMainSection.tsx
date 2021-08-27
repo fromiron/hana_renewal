@@ -5,6 +5,7 @@ import {IBlogSectionHeader, IPostArray, IPost} from "./blogInterface";
 import TagIcon from "./TagIcon";
 import Link from "next/link";
 
+
 function BlogMainSection({posts}: IPostArray) {
     return (
         <section className="text-gray-600 body-font">
@@ -38,15 +39,23 @@ function BlogSectionHeader({title, text}: IBlogSectionHeader) {
 
 
 function Post({id, title, tags, media, excerpt, created_at}: IPost) {
+    console.log(id, media)
+
+    const imageUrl = () => {
+        if (media !== null && media?.url && media?.url.length > 0) {
+            return process.env.NEXT_PUBLIC_API_URL + media?.url as string;
+        } else {
+            return process.env.NEXT_PUBLIC_EMPTY_IMAGE_URL as string;
+        }
+    }
+
     return (
-        <li className="p-4 md:w-1/3 sm:mb-0 mb-6 rounded-xl  bg-white hover:bg-lightgray transition-colors duration-500 ease-in-out cursor-pointer">
+        <li className="p-4 md:w-1/3 sm:mb-0 mb-6 rounded-xl bg-white hover:bg-lightgray transition-colors duration-500 ease-in-out cursor-pointer">
             <Link href={`/blog/${id}`}>
                 <a>
                     <div className="rounded-lg overflow-hidden h-48 relative ">
-                        {media &&
-                        <Image alt="media" src={process.env.NEXT_PUBLIC_API_URL + media?.url} layout={'fill'}
+                        <Image alt="media" src={imageUrl()} layout={'fill'}
                                objectFit={'cover'}/>
-                        }
                     </div>
                     <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{title}</h2>
                     <div>{datetimeFormatter(created_at)}</div>

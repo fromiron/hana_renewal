@@ -1,8 +1,9 @@
 import React from "react";
 import {ICount} from "./blogInterface";
 
-function BlogPagination({count}:ICount) {
+function BlogPagination({count}: ICount) {
     console.log(count)
+
     return (
         <nav className="pagination w-full bg-lightgray justify-center" role="navigation" aria-label="pagination">
             <a href="#" className="pagination-link" aria-label="Goto previous page">
