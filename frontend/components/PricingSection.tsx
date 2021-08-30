@@ -18,7 +18,7 @@ interface planType {
 
 function PricingSection({plans}: any) {
     return (
-        <section className="pt-24 mb-10">
+        <section className="pt-24 mb-10 w-full">
             <div className="max-w-7xl px-4 mx-auto mb-20 text-center">
                 <h1 className="mb-3 text-4xl font-bold leading-tight text-gray-900 md:font-extrabold">お客さまとうさぎさんに合わせて提供いたします。</h1>
                 <p className="mb-6 text-lg text-gray-500 md:text-xl">コースカスタムも可能ですのでお気軽にどうぞ</p>

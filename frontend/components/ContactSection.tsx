@@ -4,32 +4,33 @@ function ContactSection() {
     const [checked, setChecked] = useState<string>('サービス内容相談');
 
     return (
-        <section>
-            <div className="container px-5 py-24 mx-auto">
+        <section className="w-full">
+            <div className="container px-5 py-24 mx-auto text-base-content">
                 <div className="flex flex-col text-center w-full mb-12">
-                    <h2 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-black">Contact Us</h2>
-                    <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray">カスタマイズプラン、日程などお気軽にお問合せください</p>
+                    <h2 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-primary">Contact Us</h2>
+                    <p className="lg:w-2/3 mx-auto leading-relaxed ">カスタマイズプラン、日程などお気軽にお問合せください</p>
                 </div>
                 <div className="lg:w-1/2 md:w-2/3 mx-auto">
                     <div className="flex flex-wrap -m-2">
                         <div className="p-2 w-1/2">
                             <div className="relative">
-                                <label htmlFor="name" className="leading-7 text-sm text-gray">Name</label>
+                                <label htmlFor="name" className="leading-7 text-sm ">Name</label>
                                 <input type="text" id="name" name="name"
-                                       className="w-full bg-lightgray rounded border-transparent border-2 focus:border-primary focus:bg-white text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-500 ease-in-out"/>
+                                       className="w-full bg-base-200 rounded border-transparent border-2  focus:border-primary focus:text-accent-focus focus:bg-white outline-none py-1 px-3 leading-8 transition-colors duration-500 ease-in-out"/>
                             </div>
                         </div>
                         <div className="p-2 w-1/2">
                             <div className="relative">
-                                <label htmlFor="email" className="leading-7 text-sm text-gray">Email</label>
+                                <label htmlFor="email" className="leading-7 text-sm ">Email</label>
                                 <input type="email" id="email" name="email"
-                                       className="w-full bg-lightgray rounded border-transparent border-2 focus:border-primary focus:bg-white text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-500 ease-in-out"/>
+                                       className="w-full bg-base-200 rounded border-transparent border-2  focus:border-primary focus:text-accent-focus focus:bg-white outline-none py-1 px-3 leading-8 transition-colors duration-500 ease-in-out"/>
                             </div>
                         </div>
 
                         <div className="py-2 px-5 md:flex">
                             <label className="flex items-center mr-5">
-                                <input type="radio" className="form-radio" name="contact_type" value="サービス内容相談" defaultChecked/>
+                                <input type="radio" className="form-radio" name="contact_type" value="サービス内容相談"
+                                       defaultChecked/>
                                 <span className="ml-2 cursor-pointer">サービス内容相談</span>
                             </label>
                             <label className="flex items-center mr-5">
@@ -47,7 +48,7 @@ function ContactSection() {
                             <div className="relative">
                                 <label htmlFor="message" className="leading-7 text-sm text-gray">Message</label>
                                 <textarea id="message" name="message"
-                                          className="w-full bg-lightgray rounded border-transparent border-2 focus:border-primary focus:bg-white h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-500 ease-in-out"/>
+                                          className="w-full bg-base-200 rounded border-transparent border-2 h-48 focus:border-primary focus:text-accent-focus focus:bg-white outline-none py-1 px-3 leading-8 transition-colors duration-500 ease-in-out"/>
                             </div>
                         </div>
                         <div className="p-2 w-full">

@@ -12,7 +12,7 @@ function FAQSection({faqs}: any) {
     let leftList = faqList.filter((faq: faqType, index: number) => index % 2 === 0);
     let rightList = faqList.filter((faq: faqType, index: number) => index % 2 !== 0);
     return (
-        <section className="pt-20 pb-24 mx-auto max-w-7xl md:px-4">
+        <section className="pt-20 pb-24 mx-auto max-w-7xl md:px-4 snap-start">
             <h1 className="mb-8 text-xl font-bold md:text-3xl">Frequently Asked Questions</h1>
             <div className="grid grid-cols-1 gap-0 text-sm md:grid-cols-2 md:gap-5">
 
