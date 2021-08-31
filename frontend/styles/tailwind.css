@@ -2,28 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-    .snap {
-        scroll-snap-type: var(--scroll-snap-direction) var(--scroll-snap-constraint);
-    }
+body {
+    font-family: 'Kaisei Tokumin', serif;
+}
 
-    .snap-y {
-        --scroll-snap-direction: y;
-    }
-
-    .snap-mandatory {
-        --scroll-snap-constraint: mandatory;
-    }
-
-    .snap-proximity {
-        --scroll-snap-constraint: proximity;
-    }
-
-    .snap-start {
-        scroll-snap-align: start;
-    }
-
-    .snap-none {
-        --scroll-snap-strictness: none
-    }
+.deco-font {
+    font-family: 'Gaegu', cursive;
 }

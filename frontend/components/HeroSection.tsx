@@ -6,20 +6,52 @@ interface mainMessageType {
     }
 }
 
+
+
 function HeroSection({mainMessage}: mainMessageType) {
 
     return (
-        <section className="py-32 px-4 min-h-500  mx-auto max-w-7xl">
-            <div className="mx-auto w-full lg:w-8/12 xl:w-5/12">
-                <p className="mb-2 text-xs font-semibold tracking-wide uppercase text-gray">うさぎ向けのペットシッター</p>
-                <h1 className="mb-3 text-3xl font-bold leading-tight text-gray md:text-4xl">Rabbit sitter HANA</h1>
-                <p className="mb-5 text-base text-gray md:text-lg">
-                    {mainMessage.main}
-                </p>
-                <a href="/contact" className="mb-2 mr-4 w-full btn btn-primary btn-lg sm:w-auto sm:mb-0">Contact Us</a>
-                <a href="/blog" className="mb-2 w-full btn btn-light btn-lg sm:w-auto sm:ml-0 sm:mb-0">Blog</a>
+
+        <div className="hero min-h-screen bg-base-100">
+            <div className="text-center hero-content">
+                <div className="max-w-md">
+                    <h3 className="text-2xl mb-2 text-base-200">うさぎ向けのペットシッター</h3>
+                    <h1 className="mb-5 text-5xl font-bold text-base-300">
+                        Rabbit sitter HANA
+                    </h1>
+                    <p className="mb-5 text-base-300">
+                        {mainMessage.main}
+                    </p>
+                    <button className="btn btn-primary mr-2 text-base-100">Contact</button>
+                    <button className="btn btn-accent text-base-100">Blog</button>
+
+                </div>
             </div>
-        </section>
+        </div>
+
+    )
+}
+
+function ImageFrame() {
+    return (
+
+        <div className="stack">
+            <div className="text-center shadow-md w-72 card bg-base-200">
+                <img src="https://picsum.photos/id/1005/600/600" alt="Image 1" className="rounded"/>
+            </div>
+            <div className="text-center shadow w-72 card bg-base-200">
+                <img src="https://picsum.photos/id/1006/600/600" alt="Image 2" className="rounded"/>
+            </div>
+            <div className="text-center shadow-sm w-72 card bg-base-200">
+                <img src="https://picsum.photos/id/1008/600/600" alt="Image 3" className="rounded"/>
+            </div>
+        </div>
+
+        // <div className="stack">
+        //     <img src="https://picsum.photos/id/1005/600/600" alt="Image 1" className="rounded"/>
+        //     <img src="https://picsum.photos/id/1006/600/600" alt="Image 2" className="rounded"/>
+        //     <img src="https://picsum.photos/id/1007/600/600" alt="Image 3" className="rounded"/>
+        // </div>
 
     )
 }

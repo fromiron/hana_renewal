@@ -3,15 +3,12 @@ import React, {useEffect, useState} from "react";
 interface logoType {
     width: number;
     height: number;
-    isDwarf:boolean;
+    isDwarf: boolean;
 }
 
-function Logo({width = 50, height = 50, isDwarf=true}: logoType) {
-
-
+function Logo({width = 50, height = 50, isDwarf = true}: logoType) {
     const lineFill = isDwarf ? '#565656' : '#fff';
     const bgFill = isDwarf ? '#fff' : '#565656';
-
     return (
         <div className="shadow-sm">
             <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 99.149 99.159">

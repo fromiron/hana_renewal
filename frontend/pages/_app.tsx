@@ -4,7 +4,6 @@ import React, {Fragment} from "react";
 import Head from 'next/head'
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
-import {Html} from "next/document";
 
 function MyApp({Component, pageProps}: AppProps) {
     return (
